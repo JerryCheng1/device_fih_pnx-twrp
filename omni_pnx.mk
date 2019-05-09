@@ -49,3 +49,16 @@ PRODUCT_DEVICE := pnx
 PRODUCT_BRAND := Nokia
 PRODUCT_MODEL := fih_sdm710
 PRODUCT_MANUFACTURER := FIH
+
+# add support for future ota updates
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.secure=1 \
+    ro.adb.secure=0 \
+    ro.allow.mock.location=0
+    
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    TARGET_DEVICE="jasmine_sprout" \
+    PRODUCT_NAME="jasmine_sprout" \
+    PRIVATE_BUILD_DESC="Phoenix_00CN-user 9 PPR1.180610.011 00CN_2_48B release-keys"
+
+BUILD_FINGERPRINT := "Nokia/Phoenix_00CN/PNX:9/PPR1.180610.011/00CN_2_48B:user/release-keys"
