@@ -57,8 +57,8 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.allow.mock.location=0
     
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    TARGET_DEVICE="jasmine_sprout" \
-    PRODUCT_NAME="jasmine_sprout" \
+    TARGET_DEVICE="pnx" \
+    PRODUCT_NAME="pnx" \
     PRIVATE_BUILD_DESC="Phoenix_00CN-user 9 PPR1.180610.011 00CN_2_48B release-keys"
 
 BUILD_FINGERPRINT := "Nokia/Phoenix_00CN/PNX:9/PPR1.180610.011/00CN_2_48B:user/release-keys"

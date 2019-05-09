@@ -26,7 +26,6 @@ fi
 venpath="/dev/block/bootdevice/by-name/vendor$suffix"
 mkdir /v
 mount -t ext4 -o ro "$venpath" /v
-
 syspath="/dev/block/bootdevice/by-name/system$suffix"
 mkdir /s
 mount -t ext4 -o ro "$syspath" /s
@@ -87,6 +86,7 @@ cp /v/lib64/libtime_genoff.so /vendor/lib64/
 cp /v/lib64/libkeymasterdeviceutils.so /vendor/lib64/
 cp /v/lib64/libkeymasterprovision.so /vendor/lib64/
 cp /v/lib64/libkeymasterutils.so /vendor/lib64/
+cp /v/lib64/hw/bootctrl.sdm710.so /vendor/lib64/hw/
 cp /v/lib64/hw/android.hardware.boot@1.0-impl.so /vendor/lib64/hw/
 cp /v/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so /vendor/lib64/hw/
 cp /v/lib64/hw/android.hardware.keymaster@3.0-impl-qti.so /vendor/lib64/hw/
