@@ -18,16 +18,16 @@ LOCAL_PATH := device/fih/pnx
 
 # Architecture
 TARGET_ARCH := arm64
-TARGET_ARCH_VARIANT := armv8-a
+TARGET_ARCH_VARIANT := armv8-2a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := kryo
+TARGET_CPU_VARIANT := cortex-a75
 
 TARGET_2ND_ARCH := arm
-TARGET_2ND_ARCH_VARIANT := armv7-a-neon
+TARGET_2ND_ARCH_VARIANT := armv8-a
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := cortex-a53
+TARGET_2ND_CPU_VARIANT := cortex-a75
 
 # Platform
 TARGET_BOARD_PLATFORM := sdm710
@@ -36,7 +36,7 @@ TARGET_USES_64_BIT_BINDER := true
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := sdm710
-TARGET_NO_BOOTLOADER := true
+TARGET_NO_BOOTLOADER ?= true
 TARGET_USES_UEFI := true
 
 # Crypto
@@ -57,7 +57,6 @@ BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_KERNEL_PAGESIZE    := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET     := 0x01000000
-BOARD_SECOND_OFFSET := 0x00f00000
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/Image.gz-dtb
 
 # Partitions
@@ -76,14 +75,14 @@ BOARD_SUPPRESS_SECURE_ERASE := true
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 
+# Workaround for error copying vendor files to recovery ramdisk
+TARGET_COPY_OUT_VENDOR := vendor
+
 # Recovery
 TARGET_RECOVERY_WIPE := $(LOCAL_PATH)/recovery/root/etc/recovery.wipe
 
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_HAS_NO_SELECT_BUTTON := true
-
-# Vendor
-TARGET_COPY_OUT_VENDOR := vendor
 
 # TWRP Configuration
 TW_THEME := portrait_hdpi
@@ -99,6 +98,7 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 RECOVERY_SDCARD_ON_DATA := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TW_SCREEN_BLANK_ON_BOOT := true
+TARGET_RECOVERY_DEVICE_MODULES += android.hardware.boot@1.0
 TW_INCLUDE_REPACKTOOLS := true
 TW_USE_TOOLBOX := true
 TW_INCLUDE_NTFS_3G := true
@@ -107,8 +107,15 @@ TW_INCLUDE_NTFS_3G := true
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 
-TARGET_RECOVERY_DEVICE_MODULES += android.hardware.boot@1.0
-TW_RECOVERY_ADDITIONAL_RELINK_FILES := ${OUT_DIR}/target/product/pnx/system/lib64/android.hardware.boot@1.0.so
+# A/B updater updatable partitions list. Keep in sync with the partition list
+# with "_a" and "_b" variants in the device. Note that the vendor can add more
+# more partitions to this list for the bootloader and radio.
+AB_OTA_PARTITIONS += \
+    boot \
+    system \
+    vendor \
+    vbmeta \
+    dtbo
 
 # Security Patch Hack to prevent Anti Rollback
 PLATFORM_SECURITY_PATCH := 2019-02-01
