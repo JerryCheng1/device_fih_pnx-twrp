@@ -1,6 +1,4 @@
- Nokia 8.1 (also known as Nokia X7 in China, codenamed _"PNX"_) are high-end mid-range smartphones from Nokia.
-
-Nokia 8.1 was announced and released in December 2018, and China Variant (Nokia X7) was announced and released in October 2018.
+Nokia X7/8.1 (codenamed _"PNX"_) are smartphones from Nokia, was announced and released in Q4 2018.
 
 ## Device specifications
 
@@ -17,10 +15,11 @@ Nokia 8.1 was announced and released in December 2018, and China Variant (Nokia 
 | Display      | 2280 x 1080 (19:9), 6.18 inch                   |
 
 
-## How to build
-
+## How To Compile TWRP For PNX
+```
 . build/envsetup.sh && lunch omni_pnx-eng && make -j32 bootimage
-
-## Fix boot loops
-
-./magiskbootx86 --hexpatch kernel 77616E745F696E697472616D6673 736B69705F696E697472616D6673
+```
+## Fix boot loops TWRP
+```
+$magiskbootx86 --hexpatch kernel 77616E745F696E697472616D6673 736B69705F696E697472616D6673
+```
