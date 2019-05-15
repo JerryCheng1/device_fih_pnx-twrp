@@ -118,4 +118,4 @@ AB_OTA_PARTITIONS += \
     dtbo
 
 # Security Patch Hack to prevent Anti Rollback
-PLATFORM_SECURITY_PATCH := 2019-02-01
+PLATFORM_SECURITY_PATCH := 2025-12-31
