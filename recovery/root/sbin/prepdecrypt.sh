@@ -1,6 +1,8 @@
 #!/sbin/sh
+
 finish() {
     umount /s
+
     setprop crypto.ready 1
 
     exit 0

@@ -37,26 +37,21 @@ on fs
     chown system system /dev/ion
     install_keyring
 
-    # Only needed when we don't include all required blobs for crypto
-    start prepdecrypt
-
     # Needed to make all stuff work in recovery
     chmod 0777 /dev/qseecom
     chmod 0664 /dev/ion
     chown system system /dev/ion
 
 on init
-    start boot-1-0
+    start hwservicemanager
+
+on boot
+    setprop sys.usb.config adb
+    start prepdecrypt
+    setprop crypto.ready 1
 
 # Separate copy needed to use /sbin/linker64 instead of /system/bin/linker64
 service sbinqseecomd /sbin/qseecomd
-    user root
-    group root
-    disabled
-    seclabel u:r:recovery:s0
-
-service prepdecrypt /init.prepdecrypt.sh
-    oneshot
     user root
     group root
     disabled
@@ -101,28 +96,27 @@ service boot-1-0 /sbin/android.hardware.boot@1.0-service
     disabled
     seclabel u:r:recovery:s0
 
+service prepdecrypt /sbin/prepdecrypt.sh
+    oneshot
+    disabled
+    user root
+    group root
+    seclabel u:r:recovery:s0
+
 service keymaster-3-0 /sbin/android.hardware.keymaster@3.0-service-qti
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
 
-on boot
-    setprop sys.usb.config adb
-
-on property:crypto.ready=0
-    stop sbinqseecomd
-    stop keymaster-3-0
-    stop gatekeeper-1-0
-    stop hwservicemanager
-    stop keystore
-    stop servicemanager
-
 on property:crypto.ready=1
     start sbinqseecomd
-
-on property:sys.listeners.registered=true
-    start hwservicemanager
-    start keymaster-3-0
     start gatekeeper-1-0
+    start keymaster-3-0
     start servicemanager
+
+on property:crypto.ready=0
+    stop keymaster-3-0
+    stop gatekeeper-1-0
+    stop servicemanager
+    stop sbinqseecomd
