@@ -15,4 +15,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_pnx.mk
+    $(LOCAL_DIR)/lineage_pnx.mk

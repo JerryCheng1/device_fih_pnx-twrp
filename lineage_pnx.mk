@@ -20,7 +20,7 @@ PRODUCT_RELEASE_NAME := pnx
 $(call inherit-product, build/target/product/embedded.mk)
 
 # Inherit from our custom product configuration
-$(call inherit-product, vendor/omni/config/common.mk)
+$(call inherit-product, vendor/lineage/config/common.mk)
 
 # Inherit language packages
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
@@ -44,7 +44,7 @@ PRODUCT_COPY_FILES += \
 endif
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_NAME := omni_pnx
+PRODUCT_NAME := lineage_pnx
 PRODUCT_DEVICE := pnx
 PRODUCT_BRAND := Nokia
 PRODUCT_MODEL := fih_sdm710
@@ -55,7 +55,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.secure=1 \
     ro.adb.secure=0 \
     ro.allow.mock.location=0
-    
+
 PRODUCT_BUILD_PROP_OVERRIDES += \
     TARGET_DEVICE="pnx" \
     PRODUCT_NAME="pnx" \
