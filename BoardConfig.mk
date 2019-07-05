@@ -125,45 +125,5 @@ DEVICE_MATRIX_FILE := $(LOCAL_PATH)/recovery/root/vendor/compatibility_matrix.xm
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 
-# A/B updater updatable partitions list. Keep in sync with the partition list
-# with "_a" and "_b" variants in the device. Note that the vendor can add more
-# more partitions to this list for the bootloader and radio.
-AB_OTA_PARTITIONS += \
-    boot \
-    system \
-    vendor \
-    vbmeta \
-    dtbo
-
-AB_OTA_POSTINSTALL_CONFIG += \
-    RUN_POSTINSTALL_system=true \
-    POSTINSTALL_PATH_system=system/bin/otapreopt_script \
-    FILESYSTEM_TYPE_system=ext4 \
-    POSTINSTALL_OPTIONAL_system=true
-
-PRODUCT_PACKAGES += \
-    otapreopt_script
-
-# Boot control
-PRODUCT_PACKAGES_DEBUG += \
-    bootctl
-
-PRODUCT_PACKAGES += \
-    update_engine \
-    update_verifier
-
-PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-    bootctrl.sdm710 \
-    libcutils \
-    libgptutils \
-    libz
-
-PRODUCT_PACKAGES_DEBUG += \
-    update_engine_client
-
-# Init
-PRODUCT_PACKAGES += \
-    init.recovery.qcom.rc
-
 # Security Patch Hack to prevent Anti Rollback
 PLATFORM_SECURITY_PATCH := 2019-04-01
