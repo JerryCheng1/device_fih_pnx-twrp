@@ -43,13 +43,6 @@ PRODUCT_COPY_FILES += \
     $(TZDATAPATH)/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
 endif
 
-## Device identifier. This must come after all inclusions
-PRODUCT_NAME := omni_pnx
-PRODUCT_DEVICE := pnx
-PRODUCT_BRAND := Nokia
-PRODUCT_MODEL := fih_sdm710
-PRODUCT_MANUFACTURER := FIH
-
 # add support for future ota updates
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.secure=0 \
@@ -86,6 +79,16 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES_DEBUG += \
     bootctl
 
+# Boot control HAL
+PRODUCT_PACKAGES += \
+    bootctrl.sdm710
+
+PRODUCT_STATIC_BOOT_CONTROL_HAL := \
+    bootctrl.sdm710 \
+    libcutils \
+    libgptutils \
+    libz
+
 # Treble Enabled
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.treble.enabled=true
@@ -100,3 +103,10 @@ PRODUCT_PACKAGES_DEBUG += \
 # Init
 PRODUCT_PACKAGES += \
     init.recovery.qcom.rc
+
+## Device identifier. This must come after all inclusions	
+PRODUCT_NAME := omni_pnx
+PRODUCT_DEVICE := pnx
+PRODUCT_BRAND := Nokia
+PRODUCT_MODEL := fih_sdm710
+PRODUCT_MANUFACTURER := FIH
