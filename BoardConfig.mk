@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/fih/pnx
+LOCAL_PATH := device/fih-nokia/pnx
 
 # Architecture
 TARGET_ARCH := arm64
@@ -61,7 +61,7 @@ TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
-TARGET_KERNEL_SOURCE := kernel/fih/pnx
+TARGET_KERNEL_SOURCE := kernel/fih-nokia/pnx
 TARGET_KERNEL_CONFIG := pnx-perf_defconfig
 BOARD_KERNEL_SEPARATED_DTBO := true
 
