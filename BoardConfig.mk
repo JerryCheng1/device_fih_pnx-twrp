@@ -62,10 +62,20 @@ TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/Image.gz-dtb
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x04000000
 BOARD_FLASH_BLOCK_SIZE := 262144
 
-# A/B device flags
-AB_OTA_UPDATER := true
+# GPT Utils
+BOARD_PROVIDES_GPTUTILS := true
+
+#File System
+BOARD_HAS_LARGE_FILESYSTEM := true
+BOARD_SYSTEMIMAGE_PARTITION_TYPE := ext4
+BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 BOARD_USES_RECOVERY_AS_BOOT := true
+TARGET_USERIMAGES_USE_EXT4 := true
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+BOARD_ROOT_EXTRA_FOLDERS := bt_firmware dsp firmware persist BBSYS hidden elabel securefs 
+
 TARGET_NO_RECOVERY := true
 TARGET_NO_KERNEL := false
 
@@ -110,16 +120,6 @@ DEVICE_MATRIX_FILE := $(LOCAL_PATH)/recovery/root/vendor/compatibility_matrix.xm
 # Debug
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
-
-# A/B updater updatable partitions list. Keep in sync with the partition list
-# with "_a" and "_b" variants in the device. Note that the vendor can add more
-# more partitions to this list for the bootloader and radio.
-AB_OTA_PARTITIONS += \
-    boot \
-    system \
-    vendor \
-    vbmeta \
-    dtbo
 
 # Security Patch Hack to prevent Anti Rollback
 PLATFORM_SECURITY_PATCH := 2019-04-01

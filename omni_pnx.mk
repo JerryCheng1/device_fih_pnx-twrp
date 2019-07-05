@@ -52,13 +52,51 @@ PRODUCT_MANUFACTURER := FIH
 
 # add support for future ota updates
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.secure=1 \
+    ro.secure=0 \
     ro.adb.secure=0 \
     ro.allow.mock.location=0
     
 PRODUCT_BUILD_PROP_OVERRIDES += \
     TARGET_DEVICE="pnx" \
     PRODUCT_NAME="pnx" \
-    PRIVATE_BUILD_DESC="Phoenix_00CN-user 9 PPR1.180610.011 00CN_2_48B release-keys"
 
-BUILD_FINGERPRINT := "Nokia/Phoenix_00CN/PNX:9/PPR1.180610.011/00CN_2_48B:user/release-keys"
+# A/B device flags
+AB_OTA_UPDATER := true
+
+# A/B updater updatable partitions list. Keep in sync with the partition list
+# with "_a" and "_b" variants in the device. Note that the vendor can add more
+# more partitions to this list for the bootloader and radio.
+AB_OTA_PARTITIONS += \
+    boot \
+    system \
+    vendor \
+    vbmeta \
+    dtbo
+
+AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_system=true \
+    POSTINSTALL_PATH_system=system/bin/otapreopt_script \
+    FILESYSTEM_TYPE_system=ext4 \
+    POSTINSTALL_OPTIONAL_system=true
+
+PRODUCT_PACKAGES += \
+    otapreopt_script
+
+# Boot control
+PRODUCT_PACKAGES_DEBUG += \
+    bootctl
+
+# Treble Enabled
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.treble.enabled=true
+
+PRODUCT_PACKAGES += \
+    update_engine \
+    update_verifier
+
+PRODUCT_PACKAGES_DEBUG += \
+    update_engine_client
+
+# Init
+PRODUCT_PACKAGES += \
+    init.recovery.qcom.rc
