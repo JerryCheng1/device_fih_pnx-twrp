@@ -75,6 +75,7 @@ BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 BOARD_USES_RECOVERY_AS_BOOT := true
 TARGET_NO_RECOVERY := true
 TARGET_NO_KERNEL := false
+TARGET_USES_HARDWARE_QCOM_BOOTCTRL := true
 
 BOARD_SUPPRESS_SECURE_ERASE := true
 
@@ -128,6 +129,36 @@ AB_OTA_PARTITIONS += \
     vendor \
     vbmeta \
     dtbo
+
+AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_system=true \
+    POSTINSTALL_PATH_system=system/bin/otapreopt_script \
+    FILESYSTEM_TYPE_system=ext4 \
+    POSTINSTALL_OPTIONAL_system=true
+
+PRODUCT_PACKAGES += \
+    otapreopt_script
+
+# Boot control
+PRODUCT_PACKAGES_DEBUG += \
+    bootctl
+
+PRODUCT_PACKAGES += \
+    update_engine \
+    update_verifier
+
+PRODUCT_STATIC_BOOT_CONTROL_HAL := \
+    bootctrl.sdm710 \
+    libcutils \
+    libgptutils \
+    libz
+
+PRODUCT_PACKAGES_DEBUG += \
+    update_engine_client
+
+# Init
+PRODUCT_PACKAGES += \
+    init.recovery.qcom.rc
 
 # Security Patch Hack to prevent Anti Rollback
 PLATFORM_SECURITY_PATCH := 2019-04-01
