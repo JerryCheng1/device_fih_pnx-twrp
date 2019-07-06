@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/fih/pnx
+LOCAL_PATH := device/fih-nokia/pnx
 
 # Architecture
 TARGET_ARCH := arm64
