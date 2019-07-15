@@ -61,10 +61,7 @@ AB_OTA_UPDATER := true
 # more partitions to this list for the bootloader and radio.
 AB_OTA_PARTITIONS += \
     boot \
-    system \
-    vendor \
-    vbmeta \
-    dtbo
+    system
 
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
