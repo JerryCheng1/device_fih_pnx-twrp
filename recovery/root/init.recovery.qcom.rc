@@ -43,6 +43,7 @@ on fs
 
 on init
     export LD_CONFIG_FILE /etc/ld.config.txt
+    start boot-1-0
     start hwservicemanager
 
 on boot
