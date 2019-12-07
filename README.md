@@ -17,7 +17,7 @@ Nokia X7/8.1 (codenamed _"PNX"_) are smartphones from Nokia, was announced and r
 
 ## How To Compile TWRP For PNX
 ```
-. build/envsetup.sh && lunch omni_pnx-eng && make -j32 bootimage
+. build/envsetup.sh && lunch omni_PNX-eng && make -j32 bootimage
 ```
 ## Fix boot loops TWRP
 ```

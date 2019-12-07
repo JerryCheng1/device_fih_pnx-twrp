@@ -15,7 +15,7 @@
 #
 
 # Release name
-PRODUCT_RELEASE_NAME := pnx
+PRODUCT_RELEASE_NAME := PNX
 
 $(call inherit-product, build/target/product/embedded.mk)
 
@@ -50,8 +50,8 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.allow.mock.location=0
     
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    TARGET_DEVICE="pnx" \
-    PRODUCT_NAME="pnx" \
+    TARGET_DEVICE="PNX" \
+    PRODUCT_NAME="PNX" \
 
 # A/B device flags
 AB_OTA_UPDATER := true
@@ -102,8 +102,8 @@ PRODUCT_PACKAGES += \
     init.recovery.qcom.rc
 
 ## Device identifier. This must come after all inclusions	
-PRODUCT_NAME := omni_pnx
-PRODUCT_DEVICE := pnx
+PRODUCT_NAME := omni_PNX
+PRODUCT_DEVICE := PNX
 PRODUCT_BRAND := Nokia
 PRODUCT_MODEL := fih_sdm710
 PRODUCT_MANUFACTURER := FIH
