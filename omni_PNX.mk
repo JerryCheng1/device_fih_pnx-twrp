@@ -17,10 +17,10 @@
 # Release name
 PRODUCT_RELEASE_NAME := PNX
 
-$(call inherit-product, build/target/product/embedded.mk)
-
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/omni/config/common.mk)
+
+PRODUCT_SHIPPING_API_LEVEL := 29
 
 # Charger
 PRODUCT_PACKAGES += \
