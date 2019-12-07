@@ -22,9 +22,6 @@ $(call inherit-product, build/target/product/embedded.mk)
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/omni/config/common.mk)
 
-# Inherit language packages
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images \
@@ -101,9 +98,9 @@ PRODUCT_PACKAGES_DEBUG += \
 PRODUCT_PACKAGES += \
     init.recovery.qcom.rc
 
-## Device identifier. This must come after all inclusions	
+## Device identifier. This must come after all inclusions
 PRODUCT_NAME := omni_PNX
 PRODUCT_DEVICE := PNX
-PRODUCT_BRAND := Nokia
-PRODUCT_MODEL := fih_sdm710
 PRODUCT_MANUFACTURER := FIH
+PRODUCT_BRAND := Nokia
+PRODUCT_MODEL := Nokia 8.1
